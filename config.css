@@ -1,0 +1,24 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  :root{
+    --color-rojo: red;
+    --color-verde: green;
+    --color-azul: blue;
+
+    --titulo-h1: 2.6rem;
+    --titulo-h2: 1.8rem;
+    --titulo-h3: 16rem;
+    --parrafo: 14rem;
+    --spam: 12rem;
+
+  }
