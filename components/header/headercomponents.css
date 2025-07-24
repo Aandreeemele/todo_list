@@ -1,0 +1,53 @@
+:root{
+    background-color: black;
+    overflow: hidden;
+}
+header{
+    display: grid;
+    grid-template-columns: 1fr 20rem auto;
+    align-items: center;
+    padding: 0.5rem;    
+}
+.Titulo{
+    position: relative;
+    top: -0.5rem;
+}
+.div-tareas{
+    max-width: 2.5rem;
+    border-radius: 15px;
+    height: 70%;
+    border: 1px solid white;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: -0.5rem;
+}
+.div-Logo-Usuario{
+    width: 4rem;
+    height: 4rem;
+    border-radius: 100%;
+    color: white;
+}
+.Titulo{
+    color: white;
+}
+
+.logo-usuario{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 100%;
+}
+.div-Usuario{
+    color: white;
+    position: relative;
+    top: -3.2rem;
+    left: 13rem;
+}
+.div-pendientes{
+    color: white;
+    position: relative;
+    top: -3.2rem;
+    left: 59rem;
+}
