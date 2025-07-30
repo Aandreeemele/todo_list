@@ -7,7 +7,7 @@ export function header(){
     header.appendChild(h1)
 
     let divTareas = document.createElement('div')
-    divTareas.className = "div-tareas";
+    divTareas.className = "div-ttareas";
     divTareas.innerText = "8"
     header.appendChild(divTareas)
 
