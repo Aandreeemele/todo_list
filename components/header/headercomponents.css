@@ -49,17 +49,17 @@ header{
 }
 .div-Usuario{
     color: white;
-    grid-column: 8;
-    position: relative;
-    top: -190%;
-    left: 8rem;
+    grid-column: 8/9;
+    grid-row: -1;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    border: 1px solid black;
 }
 .div-pendientes{
     color: white;
-    grid-column: 5/7;
-    position: relative;
-    top: -190%;
-    left: 10rem;
-
+    grid-column: 6/7;
+    grid-row: -1;
+    border: 1px solid black;
 
 }
