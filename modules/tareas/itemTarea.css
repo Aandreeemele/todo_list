@@ -1,0 +1,91 @@
+.div-tareas {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+}
+
+.fila-tarea {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background-color: black;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    color: white;
+}
+
+.circulo-indice {
+    background-color: #fff;
+    border: 2px solid white;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: red;
+}
+
+.titulo-tarea {
+    flex: 0.4;
+    margin-left: 10px;
+    color: white;
+}
+
+.estado-tarea {
+    padding: 4px 10px;
+    border-radius: 8px;
+    border: 1px solid #999;
+    font-size: 0.9em;
+    color: white;
+    text-transform: capitalize;
+}
+
+.estado-verde {
+    background-color: #d4f9d4;
+    color: #256029;
+    border: 1px solid #67c673;
+}
+
+.estado-rojo {
+    background-color: #ffe0e0;
+    color: #a00000;
+    border: 1px solid #ff9999;
+}
+
+.estado-amarillo {
+    background-color: #fff8d0;
+    color: #b39b00;
+    border: 1px solid #ffd700;
+}
+
+.fecha-tarea {
+    width: 90px;
+    text-align: center;
+    color: white;
+    flex: 0.3;
+}
+
+.integrantes {
+    display: flex;
+    gap: 6px;
+    color: white;
+}
+
+.emoji-integrante {
+    border: 1px solid #aaa;
+    border-radius: 50%;
+    padding: 5px;
+    font-size: 1.2em;
+    background-color: black;
+}
+
+.boton-eliminar {
+    border: none;
+    background-color: transparent;
+    font-size: 1.2em;
+    cursor: pointer;
+}
