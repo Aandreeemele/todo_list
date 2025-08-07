@@ -1,4 +1,4 @@
-export function tarea(indice, titulo, estado, fechaAs, fechaEn, listaIntegrantes) {
+export function tarea(indice, titulo, estado, fechaAs, fechaEn, listaIntegrantes, horaCreacion, fechaCreacion, onEliminar) {
     const div = document.createElement('div');
     div.className = 'fila-tarea';
 
@@ -15,9 +15,11 @@ export function tarea(indice, titulo, estado, fechaAs, fechaEn, listaIntegrantes
     // Estado con estilos
     const spanEstado = document.createElement('span');
     spanEstado.className = 'estado-tarea';
-    spanEstado.textContent = estado;
 
-    switch (estado.toLowerCase()) {
+    const estadoSeguro = (estado || '').toLowerCase();
+    spanEstado.textContent = estadoSeguro || 'desconocido';
+
+    switch (estadoSeguro) {
         case 'completado':
             spanEstado.classList.add('estado-verde');
             break;
@@ -40,20 +42,37 @@ export function tarea(indice, titulo, estado, fechaAs, fechaEn, listaIntegrantes
     spanFechaEn.className = 'fecha-tarea';
     spanFechaEn.textContent = fechaEn;
 
-    // Integrantes (emojis o íconos)
+    // Hora y fecha de creación
+    const spanHoraCreacion = document.createElement('span');
+    spanHoraCreacion.className = 'hora-creacion';
+    spanHoraCreacion.textContent = horaCreacion && fechaCreacion ? `🕒 ${fechaCreacion} ${horaCreacion}` : '';
+
+    // Integrantes
     const divIntegrantes = document.createElement('div');
     divIntegrantes.className = 'integrantes';
-    listaIntegrantes.forEach((emoji) => {
-        const span = document.createElement('span');
-        span.className = 'emoji-integrante';
-        span.textContent = emoji;
-        divIntegrantes.appendChild(span);
-    });
+
+    if (Array.isArray(listaIntegrantes)) {
+        listaIntegrantes.forEach((emoji) => {
+            const span = document.createElement('span');
+            span.className = 'emoji-integrante';
+            span.textContent = emoji;
+            divIntegrantes.appendChild(span);
+        });
+    }
 
     // Botón eliminar
     const botonEliminar = document.createElement('button');
     botonEliminar.className = 'boton-eliminar';
-    botonEliminar.textContent = '🗑️';
+    botonEliminar.textContent = '❌';
+
+    // Evento eliminar
+    botonEliminar.addEventListener('click', (e) => {
+        e.stopPropagation(); // Evita que dispare otros eventos
+        if (confirm(`¿Eliminar la tarea "${titulo}"?`)) {
+            onEliminar(indice);
+            div.remove();
+        }
+    });
 
     // Ensamblar fila
     div.appendChild(spanIndice);
@@ -61,6 +80,7 @@ export function tarea(indice, titulo, estado, fechaAs, fechaEn, listaIntegrantes
     div.appendChild(spanEstado);
     div.appendChild(spanFechaAs);
     div.appendChild(spanFechaEn);
+    div.appendChild(spanHoraCreacion);  // <-- Aquí la hora
     div.appendChild(divIntegrantes);
     div.appendChild(botonEliminar);
 

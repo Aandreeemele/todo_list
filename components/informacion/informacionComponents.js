@@ -1,3 +1,4 @@
+import { formulario } from "../formulario/formularioComponents.js";
 export function informacion(tarea) {
     let div = document.createElement('div');
     div.className = "div-info";
@@ -9,6 +10,8 @@ export function informacion(tarea) {
     let btnTarea = document.createElement('button');
     btnTarea.textContent = "+ tarea";
     btnTarea.className = "btn-tarea";
+    
+    btnTarea.addEventListener("click", formulario);
 
     let btnArchivados = document.createElement('button');
     btnArchivados.textContent = "Archivados";
@@ -46,16 +49,26 @@ export function informacion(tarea) {
     let emojis = document.createElement('div');
     emojis.className = "info-emojis";
     tarea.integrantes.forEach(emoji => {
-        let span = document.createElement('span');
-        span.textContent = emoji;
-        emojis.appendChild(span);
+    let span = document.createElement('span');
+    span.textContent = emoji;
+    emojis.appendChild(span);
     });
+    // Hora de creación (si existe)
+    if (tarea.horaCreacion && tarea.fechaCreacion) {
+    let hora = document.createElement('p');
+    hora.className = "info-hora";
+    hora.textContent = `Subido el ${tarea.fechaCreacion} a las ${tarea.horaCreacion}`;
+    card.appendChild(hora);
+    }
+
+
     
     card.appendChild(estado);
     card.appendChild(titulo);
     card.appendChild(descripcion);
     card.appendChild(subtitulo);
     card.appendChild(emojis);
+    
 
     div.appendChild(card);
 

@@ -26,22 +26,25 @@ export const tareasAS = [
 ];
 
 export function dashboardd() {
-    const dashboard = document.createElement('section');
-    dashboard.className = "dashboard";
-    dashboard.appendChild(header());
-  
-    const seccion1 = document.createElement('section');
-    seccion1.className = "seccion-1";
-    const infoCard = informacion(tareasAS[0]);
-    seccion1.appendChild(tareasComponents(tareasAS, infoCard)); 
-    seccion1.appendChild(infoCard); 
-  
-    dashboard.appendChild(seccion1);
-    dashboard.appendChild(footer());
-  
-    return dashboard;
-  }
-  
-  document.body.appendChild(dashboardd());
-  
+  const dashboard = document.createElement('section');
+  dashboard.className = "dashboard";
+  dashboard.appendChild(header());
+
+  const seccion1 = document.createElement('section');
+  seccion1.className = "seccion-1";
+
+  // ✅ Cargar tareas de localStorage y combinar con las tareas fijas
+  const tareasGuardadas = JSON.parse(localStorage.getItem("tareas")) || [];
+  const todasLasTareas = [...tareasAS, ...tareasGuardadas];
+
+  const infoCard = informacion(todasLasTareas[0]);
+  seccion1.appendChild(tareasComponents(todasLasTareas, infoCard));
+  seccion1.appendChild(infoCard);
+
+  dashboard.appendChild(seccion1);
+  dashboard.appendChild(footer());
+
+  return dashboard;
+}
+
 document.body.appendChild(dashboardd());
