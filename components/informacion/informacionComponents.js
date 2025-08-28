@@ -1,16 +1,17 @@
 import { formulario } from "../formulario/formularioComponents.js";
-export function informacion(tarea) {
+
+export function InfoTareas() {
+    // contenedor principal
     let div = document.createElement('div');
     div.className = "div-info";
 
-    // Botones
+    // --- Botones superiores ---
     let divBotones = document.createElement('div');
     divBotones.className = "info-botones";
 
     let btnTarea = document.createElement('button');
-    btnTarea.textContent = "+ tarea";
+    btnTarea.textContent = "+ Tarea";
     btnTarea.className = "btn-tarea";
-    
     btnTarea.addEventListener("click", formulario);
 
     let btnArchivados = document.createElement('button');
@@ -21,56 +22,57 @@ export function informacion(tarea) {
     divBotones.appendChild(btnArchivados);
     div.appendChild(divBotones);
 
-    // Card
-    let card = document.createElement('div');
-    card.className = "info-card";
+    // --- Contenedor del detalle ---
+    let divDetalle = document.createElement('div');
+    divDetalle.className = "info-detalle";
+    divDetalle.textContent = "Selecciona una tarea para ver su información";
+    div.appendChild(divDetalle);
 
-    // Estado
-    let estado = document.createElement('span');
-    estado.className = "info-estado";
-    estado.textContent = tarea.estado;
+    // --- Función para actualizar detalle ---
+    function mostrarDetalle(tarea) {
+        divDetalle.innerHTML = "";
 
-    // Título
-    let titulo = document.createElement('h3');
-    titulo.className = "info-titulo";
-    titulo.textContent = tarea.titulo;
+        let detalleTitulo = document.createElement('h2');
+        detalleTitulo.className = "detalle-titulo";
+        detalleTitulo.textContent = tarea.nombre;
 
-    // Descripción
-    let descripcion = document.createElement('p');
-    descripcion.className = "info-desc";
-    descripcion.textContent = tarea.descripcion;
+        let detalleEstado = document.createElement('p');
+        detalleEstado.className = "detalle-estado";
+        detalleEstado.textContent = "Estado: " + tarea.estado_tarea;
 
-    // Subtítulo de integrantes
-    let subtitulo = document.createElement('h4');
-    subtitulo.className = "info-subtitulo";
-    subtitulo.textContent = "Integrantes";
+        let detalleDesc = document.createElement('p');
+        detalleDesc.className = "detalle-desc";
+        detalleDesc.textContent = tarea.descripcion || "Sin descripción";
 
-    // Emojis de integrantes
-    let emojis = document.createElement('div');
-    emojis.className = "info-emojis";
-    tarea.integrantes.forEach(emoji => {
-    let span = document.createElement('span');
-    span.textContent = emoji;
-    emojis.appendChild(span);
-    });
-    // Hora de creación (si existe)
-    if (tarea.horaCreacion && tarea.fechaCreacion) {
-    let hora = document.createElement('p');
-    hora.className = "info-hora";
-    hora.textContent = `Subido el ${tarea.fechaCreacion} a las ${tarea.horaCreacion}`;
-    card.appendChild(hora);
+        let detalleSub = document.createElement('h4');
+        detalleSub.className = "detalle-sub";
+        detalleSub.textContent = "Integrantes";
+
+        let detalleEmojis = document.createElement('div');
+        detalleEmojis.className = "detalle-emojis";
+        if (tarea.integrantes) {
+            tarea.integrantes.forEach(emoji => {
+                let span = document.createElement('span');
+                span.textContent = emoji;
+                span.className = "emoji";
+                detalleEmojis.appendChild(span);
+            });
+        }
+
+        if (tarea.horaCreacion && tarea.fechaCreacion) {
+            let detalleHora = document.createElement('p');
+            detalleHora.className = "detalle-hora";
+            detalleHora.textContent = `Subido el ${tarea.fechaCreacion} a las ${tarea.horaCreacion}`;
+            divDetalle.appendChild(detalleHora);
+        }
+
+        divDetalle.appendChild(detalleTitulo);
+        divDetalle.appendChild(detalleEstado);
+        divDetalle.appendChild(detalleDesc);
+        divDetalle.appendChild(detalleSub);
+        divDetalle.appendChild(detalleEmojis);
     }
 
-
-    
-    card.appendChild(estado);
-    card.appendChild(titulo);
-    card.appendChild(descripcion);
-    card.appendChild(subtitulo);
-    card.appendChild(emojis);
-    
-
-    div.appendChild(card);
-
-    return div;
+    // --- Devolvemos el div y la función ---
+    return { div, mostrarDetalle };
 }

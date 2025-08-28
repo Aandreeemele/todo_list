@@ -1,50 +1,40 @@
 import { footer } from "../components/footer/footercomponents.js";
 import { header } from "../components/header/headercomponents.js";
-import { tareasComponents } from "../components/tareas/tareasComponents.js";
-import { informacion } from "../components/informacion/informacionComponents.js"; 
+import { tareas } from "../components/tareas/tareasComponents.js";
+import { InfoTareas } from "../components/informacion/informacionComponents.js"; 
 
-// ✅ Datos 
-export const tareasAS = [
-  {
-    indice: 1,
-    titulo: "Tarea Medio ambiente",
-    descripcion: "Investigar sobre la contaminación del aire y sus efectos.",
-    estado: "pendiente",
-    fechaAs: "30/07/2025",
-    fechaEn: "01/08/2025",
-    integrantes: ["🙂", "😐"]
-  },
-  {
-    indice: 2,
-    titulo: "Tarea Ecosistemas",
-    descripcion: "Realizar un mapa de los ecosistemas locales.",
-    estado: "completado",
-    fechaAs: "28/07/2025",
-    fechaEn: "31/07/2025",
-    integrantes: ["🙂", "😐"]
+export async function dashboardd() {
+  try {
+    const resultado = await fetch("http://127.0.0.1:3000/api/tareas");
+    const datos = await resultado.json();
+
+    const dashboard = document.createElement('section');
+    dashboard.className = "dashboard";
+    dashboard.appendChild(header());
+
+    const seccion1 = document.createElement('section');
+    seccion1.className = "seccion-1";
+
+    const tareasGuardadas = JSON.parse(localStorage.getItem("tareas")) || [];
+    const todasLasTareas = [...datos, ...tareasGuardadas];
+
+    // 👉 obtenemos div y función de detalle
+    const { div: infoCard, mostrarDetalle } = InfoTareas();
+
+    // 👉 pasamos la función mostrarDetalle como callback
+    seccion1.appendChild(tareas(todasLasTareas, mostrarDetalle));
+    seccion1.appendChild(infoCard);
+
+    dashboard.appendChild(seccion1);
+    dashboard.appendChild(footer());
+
+    return dashboard;
+
+  } catch (error) {
+    console.log("Error:", error);
   }
-];
-
-export function dashboardd() {
-  const dashboard = document.createElement('section');
-  dashboard.className = "dashboard";
-  dashboard.appendChild(header());
-
-  const seccion1 = document.createElement('section');
-  seccion1.className = "seccion-1";
-
-  // ✅ Cargar tareas de localStorage y combinar con las tareas fijas
-  const tareasGuardadas = JSON.parse(localStorage.getItem("tareas")) || [];
-  const todasLasTareas = [...tareasAS, ...tareasGuardadas];
-
-  const infoCard = informacion(todasLasTareas[0]);
-  seccion1.appendChild(tareasComponents(todasLasTareas, infoCard));
-  seccion1.appendChild(infoCard);
-
-  dashboard.appendChild(seccion1);
-  dashboard.appendChild(footer());
-
-  return dashboard;
 }
 
-document.body.appendChild(dashboardd());
+dashboardd().then(dashboard => {
+  if (dashboard) document.body.appendChild(dashboard);
+});
