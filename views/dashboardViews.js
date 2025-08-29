@@ -5,7 +5,7 @@ import { InfoTareas } from "../components/informacion/informacionComponents.js";
 
 export async function dashboardd() {
   try {
-    const resultado = await fetch("http://127.0.0.1:3000/api/tareas");
+    const resultado = await fetch("https://app-63843889-e228-4993-98e6-c0f46b02a122.cleverapps.io/api/tareas");
     const datos = await resultado.json();
 
     const dashboard = document.createElement('section');
