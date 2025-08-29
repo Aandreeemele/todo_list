@@ -89,36 +89,54 @@
     font-size: 1.2em;
     cursor: pointer;
 }
-@media (max-width: 768px) {
+/* MEDIA QUERIES PARA TABLETS Y MÓVILES */
+@media (max-width: 1200px) { /* iPad horizontal */
+   .div-tareas{
+    width: 72rem;
+   }
+}
+
+@media (max-width: 768px) { /* iPhone */
+    .div-tareas {
+        padding: 0.75rem;
+        width: 27rem;
+        position: relative;
+        left: 1rem;
+    }
+
     .fila-tarea {
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
+        gap: 0.5rem;
+    }
+
+    .titulo-tarea {
+        font-size: 1rem;
+        color: white;
+        position: relative;
+        left: 2rem;
+        top: -2.2rem;
+    }
+
+    .fecha-tarea {
+        font-size: 0.8rem;
+        position: relative;
+        top: -2.5rem;
+        left: 1rem;
+    }
+
+    .estado-tarea {
+        font-size: 0.8rem;
         justify-content: center;
         position: relative;
-        left: 3rem;
+        top: 2.5rem;
     }
 
-    .titulo-tarea,
-    .fecha-tarea,
-    .estado-tarea,
-    .integrantes {
-        flex: unset;
-        width: 100%;
-        text-align: left;
+    .emoji-integrante {
+        font-size: 1rem;
     }
-
-    .estado-tarea{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .circulo-indice {
-        align-self: flex-end;
-    }
-
-    .integrantes {
-        flex-wrap: wrap;
+    .boton-eliminar{
+        position: relative;
+        left: 22rem;
+        top: -0.6rem;
     }
 }
+

@@ -1,24 +1,60 @@
+/* Estilo general del footer */
 footer {
     background-color: black;
-    padding: 10px 0;
+    padding: 1rem 0;
     text-align: center;
     font-family: sans-serif;
     color: white;
 }
 
+/* Contenido dentro del footer */
 .footer-contenido {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 0.5rem;
+    flex-wrap: wrap; /* permite que los elementos se acomoden en varias líneas en pantallas pequeñas */
 }
 
+/* Enlace de GitHub dentro del footer */
 .footer-github {
     color: rgb(15, 15, 148);
     text-decoration: none;
     font-weight: bold;
+    font-size: 1rem;
 }
 
 .footer-github:hover {
     text-decoration: underline;
+}
+
+/* Media query para tablets y móviles */
+@media (max-width: 768px) {
+    .footer {
+        padding: 0.75rem 0;
+        font-size: 0.9rem;
+        position: relative;
+    }
+
+    .footer-contenido {
+        gap: 0.25rem;
+        flex-direction: column; /* los enlaces se apilan verticalmente en pantallas pequeñas */
+    }
+
+    .footer-github {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 1200px) {
+    footer {
+        padding: 0.5rem 0;
+        font-size: 0.8rem;
+        position: relative;
+        top: 14rem;
+    }
+
+    .footer-github {
+        font-size: 0.85rem;
+    }
 }
