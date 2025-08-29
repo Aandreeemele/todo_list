@@ -5,6 +5,8 @@ footer {
     text-align: center;
     font-family: sans-serif;
     color: white;
+    position: relative;
+    top: 8rem;
 }
 
 /* Contenido dentro del footer */
@@ -51,7 +53,7 @@ footer {
         padding: 0.5rem 0;
         font-size: 0.8rem;
         position: relative;
-        top: 14rem;
+        top: 25rem;
     }
 
     .footer-github {
